@@ -1,4 +1,4 @@
-export const getAPIUrl = (path: string | URL) => new URL(path, 'https://discord.com/api/v10/')
+export const getAPIUrl = (path: string | URL): URL => new URL(path, 'https://discord.com/api/v10/')
 
 export default async <ResponseType = Response>(
   path: string,
