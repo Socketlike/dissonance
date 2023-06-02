@@ -22,7 +22,8 @@
 ## What the hell is this?
 
 It is just another Discord library for bots, just like [D.JS](https://discord.js.org) and
-[Eris](https://abal.moe/eris).
+[Eris](https://abal.moe/eris).  
+This is a **work-in-progress**.  
 
 ## Why does this exist? We already have so many of them already!
 
