@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build:dev": "node scripts/build.mjs",
+    "check": "tsc --noEmit",
     "prettier:check": "prettier ./src --check",
     "eslint:check": "eslint ./src",
     "prettier:fix": "prettier ./src --write",
