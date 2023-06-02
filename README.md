@@ -28,7 +28,7 @@ This is a **work-in-progress**.
 ## Why does this exist? We already have so many of them already!
 
 - It exists because I wanted to [have a bit of fun. No, really.](https://justforfunnoreally.dev)
-- This also exists because personally I find the generic Discord bot either too slow or bloated
+- This also exists because (not to irritate anyone, this is my personal opinion) I find the generic Discord bot library either too slow or bloated
   (D.JS) or has literally illegible code (Eris).
 
 ## What other differences does this and other libraries of the same purpose have?
