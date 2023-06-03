@@ -30,7 +30,7 @@ export const hello = (ws: DissonanceWebSocket, data: GatewayHello): void => {
   }, ws.data.gateway.heartbeat.interval * Math.random())
 }
 
-export const heartbeatAck = (ws: DissonanceWebSocket): void => {
+export const heartbeatAck = (ws: DissonanceWebSocket, _: GatewayHeartbeatAck): void => {
   ws.data.gateway.heartbeat.received = true
   console.log('received heartbeat ACK')
 }
