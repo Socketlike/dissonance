@@ -1,5 +1,5 @@
 import { listenerOnClose, listenerOnMessage } from '@ws/handlers'
-import { DissonanceWebSocket, getGatewayURL, getGatewayBotInfo } from '@ws/utils'
+import { DissonanceWebSocket, getGatewayBotInfo, getGatewayURL } from '@ws/utils'
 
 export const createWS = async (
   token: string,
