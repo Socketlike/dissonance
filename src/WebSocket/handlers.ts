@@ -1,4 +1,4 @@
-import { GatewayHello, GatewayHeartbeatAck, GatewayOpcodes } from 'discord-api-types/v10'
+import { GatewayHeartbeatAck, GatewayHello, GatewayOpcodes } from 'discord-api-types/v10'
 import _ from 'lodash'
 import WebSocket from 'ws'
 import { DissonanceWebSocket, constructEvents, inflateData, transformDataType } from '@ws/utils'
@@ -30,7 +30,7 @@ export const hello = (ws: DissonanceWebSocket, data: GatewayHello): void => {
   }, ws.data.gateway.heartbeat.interval * Math.random())
 }
 
-export const heartbeatAck = (ws: DissonanceWebSocket, data: GatewayHeartbeatAck): void => {
+export const heartbeatAck = (ws: DissonanceWebSocket): void => {
   ws.data.gateway.heartbeat.received = true
   console.log('received heartbeat ACK')
 }
@@ -42,8 +42,7 @@ export function listenerOnMessage(
   const parsed = (
     (this as DissonanceWebSocket).data.options.compress
       ? inflateData(raw as Buffer)
-      : // eslint-disable-next-line @typescript-eslint/no-base-to-string - raw will not evaluate to '[object Object]', it is a buffer
-        JSON.parse(raw.toString('utf-8'))
+      : JSON.parse((raw as Buffer).toString('utf-8'))
   ) as { op: number; s: null | number }
 
   switch (parsed.op) {
@@ -58,7 +57,8 @@ export function listenerOnMessage(
     }
   }
 
-  // eslint-disable-next-line no-extra-semi - Prettier wants it like this
+  // Prettier wants it like this
+  // eslint-disable-next-line no-extra-semi
   ;(this as DissonanceWebSocket).data.gateway.heartbeat.seq = parsed.s
 }
 
