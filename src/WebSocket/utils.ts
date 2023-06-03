@@ -1,4 +1,5 @@
-import { APIVersion, GatewayOpcodes, GatewayIntentBits } from 'discord-api-types/v10'
+/* eslint-disable no-implicit-coercion */
+import { APIVersion, GatewayIntentBits, GatewayOpcodes } from 'discord-api-types/v10'
 import _ from 'lodash'
 import process from 'process'
 import WebSocket from 'ws'
@@ -43,7 +44,7 @@ export const inflateData = <ResultData>(
 ): ResultData => {
   inflator.push(buffer, flush)
 
-  if (inflator.err < 0) throw new Error('zlib-sync error: ' + inflator.msg)
+  if (inflator.err < 0) throw new Error(`zlib-sync error: ${inflator.msg}`)
 
   return JSON.parse(inflator.result.toString('utf-8')) as ResultData
 }
