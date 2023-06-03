@@ -20,3 +20,7 @@ export default async <ResponseType = Response>(
     data: (await response.clone().json()) as unknown as ResponseType,
   }
 }
+
+export const endpoints = {
+  gatewayBot: 'gateway/bot',
+}

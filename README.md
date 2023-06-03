@@ -23,13 +23,13 @@
 
 It is just another Discord library for bots, just like [D.JS](https://discord.js.org) and
 [Eris](https://abal.moe/eris).  
-This is a **work-in-progress**.  
+This is a **work-in-progress**.
 
 ## Why does this exist? We already have so many of them already!
 
 - It exists because I wanted to [have a bit of fun. No, really.](https://justforfunnoreally.dev)
-- This also exists because (not to irritate anyone, this is my personal opinion) I find the generic Discord bot library either too slow or bloated
-  (D.JS) or has literally illegible code (Eris).
+- This also exists because (not to irritate anyone, this is my personal opinion) I find the generic
+  Discord bot library either too slow or bloated (D.JS) or has literally illegible code (Eris).
 
 ## What other differences does this and other libraries of the same purpose have?
 
@@ -39,3 +39,8 @@ This library...
 - will probably receive major breaking changes without any warnings (again this is made for fun, I
   shouldn't have to tell everyone to change this and that or create a warning just because I want to
   push an update).
+
+## Requirements
+
+- NodeJS >= `v19.4.0`
+- pnpm

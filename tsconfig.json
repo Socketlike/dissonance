@@ -100,7 +100,9 @@
     "baseUrl": "./",
     "paths": {
       "@*": ["src/*"],
-      "@?*": ["src/*/index"]
+      "@?*": ["src/*/index"],
+      "@ws/*": ["src/WebSocket/*"],
+      "@?ws": ["src/WebSocket/index"]
     }
   },
   "exclude": ["unstaged"]
