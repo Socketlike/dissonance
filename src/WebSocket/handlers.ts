@@ -14,7 +14,7 @@ export const hello = (ws: DissonanceWebSocket, data: GatewayHello): void => {
     ws.data.gateway.heartbeat.timer = setInterval(() => {
       if (ws.data.gateway.heartbeat.received) {
         ws.send(constructEvents.heartbeat(ws.data.gateway.heartbeat.seq))
-        ws.data.gateway.heartbeat.recieved = true
+        ws.data.gateway.heartbeat.received = true
       } else {
         ws.terminate()
 

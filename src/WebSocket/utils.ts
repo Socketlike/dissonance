@@ -76,7 +76,9 @@ export const transformDataType = <NewType>(data: unknown): NewType => data as Ne
 export class DissonanceWebSocket extends WebSocket {
   public data = {
     token: '',
-    options: {} as Dissonance.WebSocket.Options,
+    options: {
+      intents: 0,
+    },
     gateway: {
       isNew: true,
       heartbeat: {
@@ -92,6 +94,6 @@ export class DissonanceWebSocket extends WebSocket {
     super(url)
 
     this.data.token = token
-    this.data.options = options || {}
+    this.data.options = options || { intents: 0 }
   }
 }
