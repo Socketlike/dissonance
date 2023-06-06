@@ -5,7 +5,7 @@
   "license": "MIT",
   "exports": "./dist/index.mjs",
   "engines": {
-    "node": ">=19.0.0"
+    "node": ">=18.0.0"
   },
   "scripts": {
     "build:dev": "node scripts/build.mjs",
@@ -32,12 +32,9 @@
     "@types/lodash": "^4.14.195",
     "@types/node": "^20.2.5",
     "@types/ws": "^8.5.4",
-    "bufferutil": "^4.0.7",
     "discord-api-types": "^0.37.43",
-    "erlpack": "^0.1.4",
     "eventemitter3": "^5.0.1",
     "lodash": "^4.17.21",
-    "ws": "^8.13.0",
-    "zlib-sync": "^0.1.8"
+    "ws": "^8.13.0"
   }
 }
