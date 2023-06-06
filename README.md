@@ -42,5 +42,5 @@ This library...
 
 ## Requirements
 
-- NodeJS >= `v19.4.0`
-- pnpm
+- NodeJS >= `LTS`
+- pnpm `current` or not too outdated from `current`
