@@ -9,7 +9,7 @@ import {
 } from 'discord-api-types/v10'
 import _ from 'lodash'
 import WebSocket from 'ws'
-import EventEmitter from 'events'
+import EventEmitter from 'eventemitter3'
 
 import { endpoints } from '@const'
 import { formHeartbeat, formIdentify } from '@events'
@@ -147,7 +147,7 @@ export class WebSocketManager extends EventEmitter {
   })()
 
   public constructor(options: WebSocketManager.Options) {
-    super({ captureRejections: true })
+    super()
 
     validateOptions(options)
 
