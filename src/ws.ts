@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import {
-  APIVersion,
   APIGatewayBotInfo,
+  APIVersion,
   GatewayIntentBits,
   GatewayOpcodes,
   GatewayHello,
@@ -9,7 +10,6 @@ import {
 import _ from 'lodash'
 import WebSocket from 'ws'
 import EventEmitter from 'events'
-import process from 'process'
 
 import { endpoints } from '@const'
 import { formHeartbeat, formIdentify } from '@events'
@@ -23,7 +23,7 @@ export type PossibleGatewayIntentBits =
 
 type GatewayBotInfo = APIGatewayBotInfo & { url: string | URL }
 
-const transformDataToType = <NewType>(data: unknown) => data as NewType
+const transformDataToType = <NewType>(data: unknown): NewType => data as NewType
 
 function validateIntents(intents: WebSocketManager.Options['intents']): boolean {
   if (typeof intents === 'number') return true
@@ -32,7 +32,7 @@ function validateIntents(intents: WebSocketManager.Options['intents']): boolean 
     const validBits = uniqBy(
       Object.entries(GatewayIntentBits).filter(([_, val]) => typeof val === 'number'),
       ([_, bit]) => bit,
-    ).flat() as Array<PossibleGatewayIntentBits>
+    ).flat() as PossibleGatewayIntentBits[]
 
     return intents.every((value) => {
       if (!validBits.includes(value)) console.log('Invalid Gateway intent bit:', value)
@@ -51,7 +51,7 @@ function validateOptions(options: WebSocketManager.Options): void {
     throw new TypeError(
       !options.token
         ? 'Token must not be falsy'
-        : 'Token must be a string. Received ' + typeof options,
+        : `Token must be a string. Received ${typeof options}`,
     )
 
   if (!validateIntents(options.intents))
@@ -228,7 +228,7 @@ export class WebSocketManager extends EventEmitter {
 export namespace WebSocketManager {
   export interface Options {
     token: string
-    intents: number | Array<PossibleGatewayIntentBits>
+    intents: number | PossibleGatewayIntentBits[]
     activities?: GatewayActivity[]
   }
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-extraneous-class --- The REST class will have real methods soon */
 import { APIVersion } from 'discord-api-types/v10'
 
 import { userAgent } from '@const'
