@@ -40,6 +40,8 @@ This is a **work-in-progress**.
 ## Installation
 
 ```bash
+npm i @sckt/dissonance
+yarn add @sckt/dissonance
 pnpm i @sckt/dissonance
 ```
 
