@@ -13,9 +13,6 @@ jobs:
       contents: write
 
     steps:
-      - name: Install tar & gz
-        run: sudo apt install tar gzip -y
-
       - name: Check out Git repository
         uses: actions/checkout@v3
 
