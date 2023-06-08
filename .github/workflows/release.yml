@@ -33,5 +33,5 @@ jobs:
 
       - uses: ncipollo/release-action@main
         with:
-          artifacts: 'bundle/*'
+          artifacts: 'dist/*'
           makeLatest: true
