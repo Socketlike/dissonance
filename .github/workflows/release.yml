@@ -35,3 +35,8 @@ jobs:
         with:
           artifacts: 'dist/*'
           makeLatest: true
+
+      - name: Publish
+        run: pnpm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH }}
