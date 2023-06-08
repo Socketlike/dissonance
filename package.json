@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "description": "Yet another Discord interface for JavaScript",
   "license": "MIT",
-  "exports": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs"
+    }
+  },
   "engines": {
     "node": ">=18.0.0"
   },
