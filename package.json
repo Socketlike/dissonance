@@ -1,6 +1,6 @@
 {
   "name": "@sckt/dissonance",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Yet another Discord interface for JavaScript",
   "license": "MIT",
   "author": "Evelyn <evelynxii.xt@gmail.com> (https://socketlike.github.io)",
