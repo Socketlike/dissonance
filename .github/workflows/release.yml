@@ -40,8 +40,6 @@ jobs:
           makeLatest: true
 
       - name: Publish
-        run: |
-          git status
-          pnpm publish
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH }}
