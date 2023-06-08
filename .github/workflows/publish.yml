@@ -1,13 +1,12 @@
-name: Release
+name: Publish
 
 on:
-  push:
-    tags:
-      - 'v*'
+  release:
+    types: [published]
 
 jobs:
-  release:
-    name: Release
+  publish:
+    name: Publish
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -20,6 +19,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 19
+          registry-url: 'https://registry.npmjs.org'
 
       - uses: pnpm/action-setup@master
         with:
@@ -28,10 +28,7 @@ jobs:
       - name: Install Node.js dependencies
         run: pnpm install
 
-      - name: Build
-        run: pnpm run build:prod
-
-      - uses: ncipollo/release-action@main
-        with:
-          artifacts: 'bundle/*'
-          makeLatest: true
+      - name: Publish
+        run: pnpm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH }}
