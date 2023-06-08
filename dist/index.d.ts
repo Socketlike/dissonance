@@ -1,17 +1,11 @@
+import fs from 'fs';
+import { GatewayOpcodes, APIVersion, GatewayDispatchEvents } from 'discord-api-types/v10';
+import process from 'process';
+import EventEmitter from 'eventemitter3';
+import WebSocket from 'ws';
+import _ from 'lodash';
+
 // dist/index.mjs
-import fs from "fs";
-import {
-  GatewayOpcodes
-} from "discord-api-types/v10";
-import process from "process";
-import EventEmitter from "eventemitter3";
-import {
-  GatewayDispatchEvents,
-  GatewayOpcodes as GatewayOpcodes2
-} from "discord-api-types/v10";
-import WebSocket from "ws";
-import _ from "lodash";
-import { APIVersion } from "discord-api-types/v10";
 var __defProp = Object.defineProperty;
 var __export = (target, all) => {
   for (var name in all)
@@ -229,7 +223,7 @@ var GatewayManager = class extends EventEmitter {
   }
   _receive(data) {
     switch (data.op) {
-      case GatewayOpcodes2.Hello: {
+      case GatewayOpcodes.Hello: {
         this.emit("hello", data.d);
         this._heartbeat.interval = data.d.heartbeat_interval;
         if (this._forceClosed)
@@ -246,17 +240,17 @@ var GatewayManager = class extends EventEmitter {
         this._forceClosed = false;
         break;
       }
-      case GatewayOpcodes2.HeartbeatAck: {
+      case GatewayOpcodes.HeartbeatAck: {
         this.emit("ack", this._ws);
         this._heartbeat.ack = true;
         break;
       }
-      case GatewayOpcodes2.Reconnect: {
+      case GatewayOpcodes.Reconnect: {
         this.emit("reconnect", this._ws);
         this.reconnect(false);
         break;
       }
-      case GatewayOpcodes2.InvalidSession: {
+      case GatewayOpcodes.InvalidSession: {
         this.emit("invalidSession", data.d, this._ws);
         this.reconnect(!data.d);
         break;
@@ -297,9 +291,5 @@ var WebSocketManager = class {
     return this;
   }
 };
-export {
-  const_exports as constants,
-  gateway_exports as gateway,
-  rest_exports as rest,
-  ws_exports as ws
-};
+
+export { const_exports as constants, gateway_exports as gateway, rest_exports as rest, ws_exports as ws };

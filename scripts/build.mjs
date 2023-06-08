@@ -1,17 +1,17 @@
-import esbuild from 'esbuild'
 import process from 'process'
-import { nodeExternalsPlugin } from 'esbuild-node-externals'
+import { build, defineConfig } from 'tsup'
 
-const minify = process.argv.includes('--prod')
-
-await esbuild.build({
-  entryPoints: ['src/index.ts'],
-  minify,
-  sourcemap: false,
-  bundle: true,
-  platform: 'node',
-  plugins: [nodeExternalsPlugin()],
-  format: 'esm',
-  target: 'esnext',
-  outfile: 'dist/index.mjs',
-})
+await build(
+  defineConfig({
+    entry: ['dist/index.mjs'],
+    target: 'esnext',
+    minify: process.argv.includes('--prod'),
+    bundle: true,
+    sourcemap: false,
+    splitting: false,
+    dts: true,
+    platform: 'node',
+    format: 'esm',
+    outDir: 'dist',
+  }),
+)
