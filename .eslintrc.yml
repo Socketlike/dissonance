@@ -23,20 +23,16 @@ rules:
     - error
     - ignores:
         - fs.promises
+  \@typescript-eslint/naming-convention: off
 
   constructor-super: error
-  node/no-missing-require: off
-  node/no-missing-import: off
-  node/no-unpublished-import: off
-  node/no-unpublished-require: off
-  node/shebang: off
   no-undefined: off
   no-process-exit: off
   no-undef: off
   no-unused-vars: off
   prefer-destructuring: off
-  '@typescript-eslint/no-unused-vars': error
-  '@typescript-eslint/no-dynamic-delete': off
+  \@typescript-eslint/no-unused-vars: error
+  \@typescript-eslint/no-dynamic-delete: off
 
 overrides:
   - files: '**/*.ts'

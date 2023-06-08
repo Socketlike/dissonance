@@ -1,4 +1,5 @@
-import type { APIGatewayBotInfo, GatewayIntentBits, GatewayOpcodes } from 'discord-api-types/v10'
+/* eslint-disable @typescript-eslint/array-type */
+import type { APIGatewayBotInfo, GatewayIntentBits } from 'discord-api-types/v10'
 
 export type PossibleGatewayIntentBits =
   | (typeof GatewayIntentBits)[keyof Omit<typeof GatewayIntentBits, 'GuildBans'>]

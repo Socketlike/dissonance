@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import EventEmitter from 'eventemitter3'
 import {
   GatewayDispatchEvents,
@@ -9,7 +10,7 @@ import {
 import WebSocket from 'ws'
 import _ from 'lodash'
 
-import { Identify, Heartbeat, Resume } from '@gateway/constructors'
+import { Heartbeat, Identify, Resume } from '@gateway/constructors'
 import { REST } from '@rest'
 import { endpoints } from '@const'
 import { GatewayBotInfo } from '@types'

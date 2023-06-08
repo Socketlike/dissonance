@@ -1,6 +1,6 @@
 import {
-  GatewayOpcodes,
   GatewayIdentify,
+  GatewayOpcodes,
   GatewayHeartbeat,
   GatewayResume,
 } from 'discord-api-types/v10'
@@ -48,7 +48,7 @@ export function Resume(
   token: string,
   session_id: string,
   seq: null | number,
-) {
+): void {
   this.op = GatewayOpcodes.Resume
   this.d = {
     token,
