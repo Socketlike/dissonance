@@ -6,8 +6,10 @@
   "exports": {
     ".": {
       "import": "./dist/index.mjs"
-    }
+    },
+    "./package.json": "./package.json"
   },
+  "files": ["dist/index.mjs"],
   "engines": {
     "node": ">=18.0.0"
   },
