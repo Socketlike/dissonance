@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/array-type */
+/* eslint-disable @typescript-eslint/array-type, @typescript-eslint/no-explicit-any */
 import type { APIGatewayBotInfo, GatewayIntentBits } from 'discord-api-types/v10'
 
 export type PossibleGatewayIntentBits =

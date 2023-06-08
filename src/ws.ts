@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { GatewayManager } from '@gateway'
 
 export class WebSocketManager {

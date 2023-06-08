@@ -1,0 +1,71 @@
+{
+  "root": true,
+  "extends": ["eslint-config-dmitmel/presets/node"],
+  "env": {
+    "browser": false
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "func-names": "off",
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      {
+        "ignores": ["modules", "dynamicImport"]
+      }
+    ],
+    "node/no-unsupported-features/node-builtins": [
+      "error",
+      {
+        "ignores": ["fs.promises"]
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-dynamic-delete": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "constructor-super": "error",
+    "no-undefined": "off",
+    "no-process-exit": "off",
+    "no-undef": "off",
+    "no-unused-vars": "off",
+    "prefer-destructuring": "off",
+    "camelCase": "off"
+  },
+  "overrides": [
+    {
+      "files": "**/*.ts",
+      "extends": "eslint-config-dmitmel/presets/typescript-addon",
+      "rules": {
+        "node/no-missing-import": "off",
+        "eqeqeq": "off",
+        "no-return-assign": "off",
+        "no-void": "off",
+        "consistent-return": "off",
+        "@typescript-eslint/no-dynamic-delete": "off",
+        "@typescript-eslint/naming-convention": "off"
+      }
+    },
+    {
+      "files": "**/src/*.ts",
+      "extends": "eslint-config-dmitmel/rules/typescript/with-type-checking",
+      "rules": {
+        "@typescript-eslint/naming-convention": "off"
+      }
+    },
+    {
+      "files": "**/*.d.ts",
+      "rules": {
+        "no-var": "off"
+      }
+    },
+    {
+      "files": "src/**/*.ts",
+      "parserOptions": {
+        "project": "tsconfig.json"
+      }
+    }
+  ]
+}

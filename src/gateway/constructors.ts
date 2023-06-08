@@ -1,7 +1,7 @@
 import {
+  GatewayHeartbeat,
   GatewayIdentify,
   GatewayOpcodes,
-  GatewayHeartbeat,
   GatewayResume,
 } from 'discord-api-types/v10'
 import { libraryName } from '@const'

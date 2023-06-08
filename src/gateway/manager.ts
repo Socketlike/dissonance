@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
 import EventEmitter from 'eventemitter3'
 import {
   GatewayDispatchEvents,
