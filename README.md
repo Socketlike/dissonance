@@ -31,16 +31,24 @@ This is a **work-in-progress**.
 - This also exists because (not to irritate anyone, this is my personal opinion) I find the generic
   Discord bot library either too slow or bloated (D.JS) or has literally illegible code (Eris).
 
-## What other differences does this and other libraries of the same purpose have?
-
-This library...
-
-- will attempt to opt to the highest Discord Gateway version possible.
-- will probably receive major breaking changes without any warnings (again this is made for fun, I
-  shouldn't have to tell everyone to change this and that or create a warning just because I want to
-  push an update).
-
 ## Requirements
 
-- NodeJS >= `LTS`
+- node >= `LTS`
 - pnpm `current` or not too outdated from `current`
+- knowledge in `ECMAScript` (we don't talk about `CommonJS`)
+
+## Installation
+
+```bash
+pnpm i @sckt/dissonance
+```
+
+## Notes
+
+This library only supports `ECMAScript`. (we don't talk about `CommonJS`)
+
+- If you want to use this with TypeScript, don't forget to build it with `esm` as the `format`.
+- If you want to use this without TypeScript, don't forget to use `.mjs` extensions or use `module`
+  for the `type` field in `package.json`.
+- If you **REALLY** want to use this with `CommonJS`, use `import()`. (I will not provide support
+  for this)
