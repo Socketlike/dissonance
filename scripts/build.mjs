@@ -3,11 +3,9 @@ import { build, defineConfig } from 'tsup'
 
 await build(
   defineConfig({
-    entry: ['dist/index.mjs'],
+    entry: ['src/index.ts'],
     target: 'esnext',
     minify: process.argv.includes('--prod'),
-    bundle: true,
-    sourcemap: false,
     splitting: false,
     dts: true,
     platform: 'node',

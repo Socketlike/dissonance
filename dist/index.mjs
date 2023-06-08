@@ -1,22 +1,10 @@
-// dist/index.mjs
-import fs from "fs";
-import {
-  GatewayOpcodes
-} from "discord-api-types/v10";
-import process from "process";
-import EventEmitter from "eventemitter3";
-import {
-  GatewayDispatchEvents,
-  GatewayOpcodes as GatewayOpcodes2
-} from "discord-api-types/v10";
-import WebSocket from "ws";
-import _ from "lodash";
-import { APIVersion } from "discord-api-types/v10";
 var __defProp = Object.defineProperty;
 var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
+
+// src/const.ts
 var const_exports = {};
 __export(const_exports, {
   creator: () => creator,
@@ -25,6 +13,7 @@ __export(const_exports, {
   userAgent: () => userAgent,
   version: () => version
 });
+import fs from "fs";
 var endpoints = {
   gatewayBot: "gateway/bot"
 };
@@ -32,17 +21,25 @@ var libraryName = "Dissonance";
 var creator = "Socketlike";
 var version = JSON.parse(fs.readFileSync("./package.json", "utf-8")).version;
 var userAgent = `${libraryName} (https://github.com/${creator}/${libraryName}, ${version})`;
+
+// src/gateway/index.ts
 var gateway_exports = {};
 __export(gateway_exports, {
   GatewayManager: () => GatewayManager,
   constructors: () => constructors_exports
 });
+
+// src/gateway/constructors.ts
 var constructors_exports = {};
 __export(constructors_exports, {
   Heartbeat: () => Heartbeat,
   Identify: () => Identify,
   Resume: () => Resume
 });
+import {
+  GatewayOpcodes
+} from "discord-api-types/v10";
+import process from "process";
 function Identify(token, intents) {
   this.op = GatewayOpcodes.Identify;
   this.d = {
@@ -79,11 +76,23 @@ function Resume(token, session_id, seq) {
     writable: false
   });
 }
+
+// src/gateway/manager.ts
+import EventEmitter from "eventemitter3";
+import {
+  GatewayDispatchEvents,
+  GatewayOpcodes as GatewayOpcodes2
+} from "discord-api-types/v10";
+import WebSocket from "ws";
+import _ from "lodash";
+
+// src/rest.ts
 var rest_exports = {};
 __export(rest_exports, {
   REST: () => REST,
   getAPIUrl: () => getAPIUrl
 });
+import { APIVersion } from "discord-api-types/v10";
 var getAPIUrl = (path) => new URL(path, `https://discord.com/api/v${APIVersion}/`);
 var REST = class {
   static async fetch(path, auth, options) {
@@ -102,6 +111,8 @@ var REST = class {
     };
   }
 };
+
+// src/gateway/manager.ts
 var GatewayManager = class extends EventEmitter {
   _options;
   _ws;
@@ -264,6 +275,8 @@ var GatewayManager = class extends EventEmitter {
     }
   }
 };
+
+// src/ws.ts
 var ws_exports = {};
 __export(ws_exports, {
   WebSocketManager: () => WebSocketManager
