@@ -3,6 +3,16 @@
   "version": "0.0.12",
   "description": "Yet another Discord interface for JavaScript",
   "license": "MIT",
+  "author": "Evelyn <evelynxii.xt@gmail.com> (https://socketlike.github.io)",
+  "keywords": ["discord"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Socketlike/dissonance"
+  },
+  "bugs": {
+    "url": "https://github.com/Socketlike/dissonance/issues"
+  },
+  "homepage": "https://github.com/Socketlike/dissonance",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
