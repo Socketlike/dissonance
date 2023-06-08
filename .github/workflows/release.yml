@@ -13,6 +13,9 @@ jobs:
       contents: write
 
     steps:
+      - name: Install tar & gz
+        run: sudo apt install tar gzip -y
+
       - name: Check out Git repository
         uses: actions/checkout@v3
 
@@ -31,9 +34,12 @@ jobs:
       - name: Build
         run: pnpm run build:prod
 
+      - name: Pack artifacts into Gunzipped Tarball
+        run: tar -czvf dist.tar.gz dist/*
+
       - uses: ncipollo/release-action@main
         with:
-          artifacts: 'dist/*'
+          artifacts: 'dist.tar.gz'
           makeLatest: true
 
       - name: Publish
