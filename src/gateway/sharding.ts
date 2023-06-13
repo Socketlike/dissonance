@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import EventEmitter from 'eventemitter3'
 import {
   GatewayDispatchEvents,
@@ -36,8 +37,11 @@ export class Shard extends EventEmitter {
     this._shardData = shardData
   }
 
-  public on(event: 'ack', listener: () => void, context?: unknown): this
-  public on(event: 'connect', listener: () => void, context?: unknown): this
+  public on(
+    event: 'ack' | 'connect' | 'reconnect' | 'resume',
+    listener: () => void,
+    context?: unknown,
+  ): this
   public on(
     event: 'disconnect',
     listener: (code: number, reason: string) => void,
@@ -60,8 +64,6 @@ export class Shard extends EventEmitter {
     listener: (data: GatewayReadyDispatchData) => void,
     context?: unknown,
   ): this
-  public on(event: 'reconnect', listener: () => void, context?: unknown): this
-  public on(event: 'resume', listener: () => void, context?: unknown): this
   public on<E extends string | symbol>(
     event: E,
     listener: (...args: any[]) => void,
@@ -258,6 +260,52 @@ export class ShardManager extends EventEmitter {
     this._REST = new REST(options.token)
   }
 
+  public on(
+    event: 'ack' | 'connect' | 'reconnect' | 'resume',
+    listener: (shardInstance: Shard) => void,
+    context?: unknown,
+  ): this
+  public on(
+    event: 'disconnect',
+    listener: (code: number, reason: string, shardInstance: Shard) => void,
+    context?: unknown,
+  ): this
+  public on(
+    event: 'heartbeat',
+    listener: (seq: null | number, shardInstance: Shard) => void,
+    context?: unknown,
+  ): this
+  public on(
+    event: 'hello',
+    listener: (data: GatewayHelloData, shardInstance: Shard) => void,
+    context?: unknown,
+  ): this
+  public on(
+    event: 'invalidSession',
+    listener: (resumable: boolean, shardInstance: Shard) => void,
+    context?: unknown,
+  ): this
+  public on(
+    event: 'message',
+    listener: (
+      message: GatewayDispatchPayload | GatewayReceivePayload,
+      shardInstance: Shard,
+    ) => void,
+    context?: unknown,
+  ): this
+  public on(
+    event: 'ready',
+    listener: (data: GatewayReadyDispatchData, shardInstance: Shard) => void,
+    context?: unknown,
+  ): this
+  public on<E extends string | symbol>(
+    event: E,
+    listener: (...args: any[]) => void,
+    context?: unknown,
+  ): this {
+    return super.on(event, listener, context)
+  }
+
   private _forwardShardEvents(shard: Shard): Shard {
     return shard
       .on('ack', () => this.emit('ack', shard))
@@ -293,33 +341,30 @@ export class ShardManager extends EventEmitter {
     this._prepared = true
   }
 
-  public async connect(): Promise<boolean[]> {
+  public connect(): Promise<boolean[]> {
     const promises = [] as Array<Promise<boolean>>
 
     for (const shardInstance of this._shards.instances) promises.push(shardInstance.connect())
 
-    const results = await Promise.all(promises)
-    return results
+    return Promise.all(promises)
   }
 
-  public async disconnect(force = false): Promise<boolean[]> {
+  public disconnect(force = false): Promise<boolean[]> {
     const promises = [] as Array<Promise<boolean>>
 
     for (const shardInstance of this._shards.instances)
       promises.push(new Promise((resolve) => resolve(shardInstance.disconnect(force))))
 
-    const results = await Promise.all(promises)
-    return results
+    return Promise.all(promises)
   }
 
-  public async reconnect(forceDisconnect = false): Promise<boolean[]> {
+  public reconnect(forceDisconnect = false): Promise<boolean[]> {
     const promises = [] as Array<Promise<boolean>>
 
     for (const shardInstance of this._shards.instances)
       promises.push(shardInstance.reconnect(forceDisconnect))
 
-    const results = await Promise.all(promises)
-    return results
+    return Promise.all(promises)
   }
 }
 
