@@ -1,63 +1,56 @@
-import {
-  GatewayHeartbeat,
-  GatewayIdentify,
-  GatewayOpcodes,
-  GatewayResume,
-} from 'discord-api-types/v10'
-import { libraryName } from '@const'
+import { GatewayIdentifyData, GatewayOpcodes, GatewayResumeData } from 'discord-api-types/v10'
+import { name as libraryName } from '@const'
 
 import process from 'process'
 
-export function Identify(
-  this: GatewayIdentify & { toJSON: () => string },
-  token: string,
-  intents: number,
-): void {
-  this.op = GatewayOpcodes.Identify
-  this.d = {
-    token,
-    properties: {
-      os: process.platform,
-      browser: libraryName,
-      device: libraryName,
-    },
-    intents,
+export class JSONable {
+  public toJSON(): string {
+    return JSON.stringify({ ...this })
   }
-
-  Object.defineProperty(this, 'toJSON', {
-    value: () => JSON.stringify({ ...this }),
-    writable: false,
-  })
 }
 
-export function Heartbeat(
-  this: GatewayHeartbeat & { toJSON: () => string },
-  seq: null | number,
-): void {
-  this.op = GatewayOpcodes.Heartbeat
-  this.d = seq
+export class Identify extends JSONable {
+  public op = GatewayOpcodes.Identify
+  public d: GatewayIdentifyData
 
-  Object.defineProperty(this, 'toJSON', {
-    value: () => JSON.stringify({ ...this }),
-    writable: false,
-  })
+  public constructor(token: string, intents: number, shard?: [number, number]) {
+    super()
+
+    this.d = {
+      token,
+      properties: {
+        os: process.platform,
+        browser: libraryName,
+        device: libraryName,
+      },
+      intents,
+      ...(Array.isArray(shard) ? { shard } : void 0),
+    }
+  }
 }
 
-export function Resume(
-  this: GatewayResume & { toJSON: () => string },
-  token: string,
-  session_id: string,
-  seq: null | number,
-): void {
-  this.op = GatewayOpcodes.Resume
-  this.d = {
-    token,
-    session_id,
-    seq,
-  }
+export class Heartbeat extends JSONable {
+  public op = GatewayOpcodes.Heartbeat
+  public d: null | number
 
-  Object.defineProperty(this, 'toJSON', {
-    value: () => JSON.stringify({ ...this }),
-    writable: false,
-  })
+  public constructor(seq: null | number) {
+    super()
+
+    this.d = seq
+  }
+}
+
+export class Resume extends JSONable {
+  public op = GatewayOpcodes.Resume
+  public d: GatewayResumeData
+
+  public constructor(token: string, session_id: string, seq: null | number) {
+    super()
+
+    this.d = {
+      token,
+      session_id,
+      seq,
+    }
+  }
 }

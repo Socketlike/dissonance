@@ -1,2 +1,2 @@
 export * as constructors from '@gateway/constructors'
-export { GatewayManager } from '@gateway/manager'
+export { Shard, ShardManager } from '@gateway/sharding'

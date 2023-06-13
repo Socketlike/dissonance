@@ -1,14 +1,21 @@
 import fs from 'fs'
 
-export const endpoints = {
-  gatewayBot: 'gateway/bot',
+const { name, version, repository } = JSON.parse(fs.readFileSync('./package.json', 'utf-8')) as {
+  version: string
+  name: string
+  author: string
+  repository: {
+    url: string
+  }
 }
 
-export const libraryName = 'Dissonance'
-export const creator = 'Socketlike'
+const userAgent = `${name} (${repository.url}, ${version})`
 
-export const version = (
-  JSON.parse(fs.readFileSync('./package.json', 'utf-8')) as { version: string }
-).version
+const endpoints = {
+  gateway: {
+    self: 'gateway',
+    bot: 'gateway/bot',
+  },
+}
 
-export const userAgent = `${libraryName} (https://github.com/${creator}/${libraryName}, ${version})`
+export { endpoints, name, userAgent, version }
