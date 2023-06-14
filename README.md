@@ -53,5 +53,3 @@ pnpm i @sckt/dissonance
     `module` for the `type` field in `package.json`.
   - If you **REALLY** want to use this with `CommonJS`, use `import()`. (I will not provide support
     for this)
-- This library will not have any sharding support. (the performance hit is massive - and I don't
-  plan to make a bot that will be in anything larger than like, 3 servers)
